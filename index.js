@@ -2,14 +2,14 @@ const Axios = require('axios').default
 const cheerio = require('cheerio')
 
 module.exports = {
-  getAudienceReviews: (slug, pages) => {
-    const movieUrl = (slug, pages) =>
-      `https://www.rottentomatoes.com/m/${slug}/reviews/?page=${pages}&type=user&sort=`
+  getAudienceReviews: (showtype, slug, pages) => {
+    const movieUrl = (showtype, slug, pages) =>
+      `https://www.rottentomatoes.com/${showtype}/${slug}/reviews/?page=${pages}&type=user&sort=`
 
     return new Promise(resolve => {
       const pageRequests = []
       for (let i = 0; i < pages; i++) {
-        pageRequests.push(Axios.get(movieUrl(slug, i + 1)))
+        pageRequests.push(Axios.get(movieUrl(showtype, slug, i + 1)))
       }
       resolve(pageRequests)
     })

@@ -10,9 +10,9 @@ const Csv = new Json2CsvParser({
 
 Commander.description('scrapes audience movie reviews from rotten tomatoes')
   .option('--csv', 'exports to csv (defaults to json)')
-  .arguments('<movie> <pages>')
-  .action((movie, pages) => {
-    RottenReviews.getAudienceReviews(movie, pages).then(reviews => {
+  .arguments('<showtype> <title> <pages>')
+  .action((showtype, title, pages) => {
+    RottenReviews.getAudienceReviews(showtype, title, pages).then(reviews => {
       console.log(
         Commander.csv ? Csv.parse(reviews) : JSON.stringify(reviews, null, 2)
       )

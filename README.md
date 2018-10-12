@@ -24,7 +24,7 @@ Example running the binaries on `darwin`:
 
 ```console
 $ ./rotten-reviews-macos
-Usage: rotten-reviews [options] <movie> <pages>
+Usage: rotten-reviews [options] <showtype> <title> <pages>
 
 scrapes audience movie reviews from rotten tomatoes
 
@@ -45,10 +45,10 @@ npm -g i rotten-reviews
 yarn global add rotten-reviews
 ```
 
-- Run `rotten-reviews` with the `movieSlug` and `pages` parameter, for example:
+- Run `rotten-reviews` with the `tv/m`, `movieSlug` and `pages` parameter, for example:
 
 ```console
-$ rotten-reviews venom_2018 25
+$ rotten-reviews m venom_2018 25
 [
   {
     "reviewer": "Melissa B",
@@ -64,6 +64,8 @@ $ rotten-reviews venom_2018 25
   },
 ...
 ```
+
+For tv shows, please specify the season e.g. `rotten-reviews tv doctor_who/s11 25`.
 
 ### Running from package
 
@@ -85,12 +87,13 @@ $ rotten-reviews venom_2018 25
 
   // https://www.rottentomatoes.com/m/venom_2018/reviews
   const movieSlug = 'venom_2018'
+  const showType = 'm'
 
   // get 500 reviews (20 per page * 25)
   const pages = 25
 
   // get using the getAudienceReviews function
-  RottenReviews.getAudienceReviews(movieSlug, pages).then(reviews => {
+  RottenReviews.getAudienceReviews(showType, movieSlug, pages).then(reviews => {
     console.log(JSON.stringify(reviews, null, 4))
   })
   ```
